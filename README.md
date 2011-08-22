@@ -23,8 +23,11 @@ This is the skeleton upon which you can develop a web-system from a simple Web C
 
 ### How to "install" it ?
 1) Copy the repository
+
 2) Create a database ( import phpapi.sql into the database )
+
 3) Edit the config.inc.php file to suit your application ( facebook app id, database connection, the document root of your application and application URL )
+
 4) Run it ( comes with a Hello world implementation and a basic calculator )
 
 ### How to extend it ?
