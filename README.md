@@ -4,7 +4,8 @@
 
 ### What's this about ?
 This is the skeleton upon which you can develop a web-system from a simple Web Calculator to the most sofisticated CRM/ERP/CMS/ETC.
-What PHPAPI provides is:
+
+###What PHPAPI provides is:
 
 1) a general structure of the code
 2) an very simple extendable API code structure
