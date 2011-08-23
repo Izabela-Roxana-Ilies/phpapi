@@ -9,7 +9,7 @@ This is the skeleton upon which you can develop a web-system from a simple Web C
 
 1) a general structure of the code
 
-2) an very simple extendable API code structure
+2) a very simple extendable API code structure
 
 3) JavaScript connectivity with the API ( with an easy way of adding new modules/method handlers )
 
