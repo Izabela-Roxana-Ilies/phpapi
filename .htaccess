@@ -1,6 +1,6 @@
-DirectoryIndex process.php
+DirectoryIndex boot.php
 Options +FollowSymlinks
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ process.php [NC]
+RewriteRule ^(.*)$ boot.php [NC]

@@ -1,27 +1,33 @@
-google.load("jquery", "1.6.2");
-google.load("jqueryui", "1.8.8");
-var BOOT = {};
-BOOT.init = function(){
-	$("[rel='api_call']").unbind("click").bind("click", function(event){
-		var href_split = $(this).attr("href").split("/");
-		API.call(href_split[2],href_split[3]);
-		event.preventDefault();
-		return false;
+$(document).ready(function(){
+	$("#add_operand").unbind("click").bind("click", function(){
+		$("#operands_holder").append('<div><label>Operand:</label><input type="text" name="operand" value="0.0" rel="calculator_sum" api_type="array" /></div>');
 	});
-	$("[rel='api_call_math']").unbind("click").bind("click", function(event){
-		var params = {
-			operand1: $("[name=operand1]").val(),
-			operand2: $("[name=operand2]").val(),
-			operator: $("[name=operator]").val()
-		};
-		API.call("test", "math", params);
-		event.preventDefault();
-		return false;
+	$("[rel='api']").unbind("click").bind("click",function(){
+		var name = $(this).attr("name");
+		var params = {};
+		$("[rel='"+name+"']").each(function(){
+			switch($(this).attr("api_type")){
+				case "array":
+					if(!params[$(this).attr("name")]){
+						params[$(this).attr("name")] = new Array();
+					}
+					params[$(this).attr("name")].push($(this).val());
+				break;
+				default:
+					params[$(this).attr("name")] = $(this).val();
+				break;
+			}
+		});
+		var method = name.replace("_","/");
+		Do.API({
+			method: method,
+			data: params,
+			callback: API_Handlers[name]
+		});
 	});
-};
-
-google.setOnLoadCallback(function() {
-
-BOOT.init();	
-	
 });
+API_Handlers = {
+	calculator_sum: function(result){
+		$("#calculator_sum_result").val(result.returned.sum);
+	}
+}
