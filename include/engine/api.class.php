@@ -34,7 +34,8 @@ class Api{
 		}
 		require_once(API_PATH."request.abstract.class.php");
 		require_once(API_PATH.".".$request.".class.php");
-		$reqObj = new Request();
+		$class = str_replace("/","_",$request);
+		$reqObj = new $class;
 		if($reqObj->acceptParams() == NO){
 			return array(
 				"returned"=>NO,
