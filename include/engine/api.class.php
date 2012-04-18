@@ -25,8 +25,11 @@ class Api{
 		return NO;
 	}
 	public function doLocalRequest($request,$params){
+		$old_request = $GLOBALS[REQUEST];
 		$GLOBALS[REQUEST] = $params;
-		$this->doRequest($request);
+		$response = $this->doRequest($request);
+		$GLOBALS[REQUEST] = $old_request;
+		return $response;
 	}
 	public function doRequest($request){
 		if($this->isRequestAccepted($request) == NO){
