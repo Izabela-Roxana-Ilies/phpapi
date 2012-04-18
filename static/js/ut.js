@@ -69,14 +69,18 @@ Load.jsA = function(options){
 	var functionName = Load.randomHash();
 	var script = document.createElement("script");
 	script.setAttribute("id",functionName);
-	options.url = "http://"+JS_SUBDOMAINS[Math.floor(Math.random()*(JS_SUBDOMAINS.length-1))]+"."+SYSDOMAIN+options.url;
+	if(JS_SUBDOMAINS.length == 0){
+		options.url = options.url; // redundent
+	}else{
+		options.url = "http://"+JS_SUBDOMAINS[Math.floor(Math.random()*(JS_SUBDOMAINS.length-1))]+"."+SYSDOMAIN+options.url;
+	}
 	
 	options.url += "?";
 	if(options.data){
 		for(var key in options.data){
-			if(data instanceof Array){
-				for(var idx in options.data){
-					options.url += encodeURIComponent(key+"[]")+"="+encodeURIComponent(options.data[key])+"&";
+			if(options.data[key] instanceof Array){
+				for(var idx in options.data[key]){
+					options.url += encodeURIComponent(key+"[]")+"="+encodeURIComponent(options.data[key][idx])+"&";
 				}
 			}else{
 				options.url += encodeURIComponent(key)+"="+encodeURIComponent(options.data[key])+"&";
